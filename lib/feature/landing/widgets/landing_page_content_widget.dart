@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pottery/congifures/app_color.dart';
-// import 'package:pottery/feature/home/view/home_view.dart';
+import 'package:pottery/feature/home/view/home_view.dart';
 import 'package:pottery/utils/customs/button_custom.dart';
 
 class LandingPageContentWidget extends StatelessWidget {
@@ -67,10 +67,10 @@ class LandingPageContentWidget extends StatelessWidget {
                     isPrimary: true,
                     text: "GO",
                     onPressed: () {
-                      // Navigator.of(context).pushReplacement(
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const HomePage()),
-                      // );
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
                     },
                   )
                 else

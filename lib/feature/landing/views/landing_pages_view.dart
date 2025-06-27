@@ -5,7 +5,7 @@ import 'package:pottery/feature/landing/bloc/landing_state.dart';
 import 'package:pottery/feature/landing/widgets/landing_page_content_widget.dart';
 import 'package:pottery/congifures/app_color.dart';
 import 'package:pottery/feature/landing/models/landing_page_model.dart';
-// import 'package:pottery/feature/main_navigation/view/main_navigation_view.dart';
+import 'package:pottery/feature/main_navigation/view/main_navigation_view.dart';
 
 class LandingPagesView extends StatefulWidget {
   const LandingPagesView({super.key});
@@ -75,10 +75,10 @@ class _LandingPagesViewState extends State<LandingPagesView> {
                       );
                     },
                     onSkip: () {
-                      // Navigator.of(context).pushReplacement(
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const MainNavigationView()),
-                      // );
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                            builder: (context) => const MainNavigationView()),
+                      );
                     },
                   );
                 },
