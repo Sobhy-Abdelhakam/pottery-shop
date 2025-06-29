@@ -64,6 +64,8 @@ class CartItemWidget extends StatelessWidget {
                 ),
               ),
               Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 8,
                 children: [
                   Container(
@@ -121,6 +123,10 @@ class CartItemWidget extends StatelessWidget {
                     height: 35,
                     width: 35,
                     padding: EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       icon: const Icon(Icons.remove),

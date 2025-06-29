@@ -26,6 +26,13 @@ class RemoveFromCart extends CartEvent {
   List<Object> get props => [productId];
 }
 
+class UndoRemoveFromCart extends CartEvent {
+  final CartItem item;
+  const UndoRemoveFromCart(this.item);
+  @override
+  List<Object> get props => [item];
+}
+
 class UpdateCartItemQuantity extends CartEvent {
   final String productId;
   final int quantity;

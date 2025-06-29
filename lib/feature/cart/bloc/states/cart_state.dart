@@ -32,3 +32,13 @@ class CartLoaded extends CartState {
   double get totalPrice =>
       items.fold(0, (total, current) => total + (current.price * current.quantity));
 }
+
+class CartItemRemoved extends CartState {
+  final List<CartItem> items;
+  final CartItem removedItem;
+
+  const CartItemRemoved(this.items, this.removedItem);
+
+  @override
+  List<Object> get props => [items, removedItem];
+}
