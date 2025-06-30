@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pottery/feature/cart/models/cart_model.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_bloc.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_event.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_state.dart';
@@ -10,7 +11,11 @@ import 'package:pottery/feature/checkout/widgets/payment_method_selector.dart';
 import 'package:pottery/feature/checkout/widgets/order_summary.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key});
+  final List<CartItem> cartItems;
+  final double subtotal;
+
+  const CheckoutScreen(
+      {super.key, required this.cartItems, required this.subtotal});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,9 @@ class CheckoutScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
+            const double deliveryFee = 10.0;
+            final total = subtotal + deliveryFee;
+
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -54,10 +62,10 @@ class CheckoutScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const OrderSummary(
-                    subtotal: 100.0, // Replace with actual data
-                    deliveryFee: 10.0, // Replace with actual data
-                    total: 110.0, // Replace with actual data
+                  OrderSummary(
+                    subtotal: subtotal,
+                    deliveryFee: deliveryFee,
+                    total: total,
                   ),
                   const Spacer(),
                   SizedBox(
