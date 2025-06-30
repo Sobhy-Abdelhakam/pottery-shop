@@ -1,4 +1,4 @@
-
+import 'package:pottery/feature/cart/models/cart_model.dart';
 import 'package:pottery/feature/checkout/models/delivery_option.dart';
 import 'package:pottery/feature/checkout/models/payment_method.dart';
 
@@ -11,6 +11,7 @@ class CheckoutState {
   final double subtotal;
   final double deliveryFee;
   final double total;
+  final List<CartItem> cartItems;
 
   CheckoutState({
     this.selectedPaymentMethod,
@@ -19,6 +20,7 @@ class CheckoutState {
     required this.subtotal,
     this.deliveryFee = 0.0,
     required this.total,
+    required this.cartItems,
   });
 
   CheckoutState copyWith({
@@ -28,14 +30,18 @@ class CheckoutState {
     double? subtotal,
     double? deliveryFee,
     double? total,
+    List<CartItem>? cartItems,
   }) {
     return CheckoutState(
-      selectedPaymentMethod: selectedPaymentMethod ?? this.selectedPaymentMethod,
-      selectedDeliveryOption: selectedDeliveryOption ?? this.selectedDeliveryOption,
+      selectedPaymentMethod:
+          selectedPaymentMethod ?? this.selectedPaymentMethod,
+      selectedDeliveryOption:
+          selectedDeliveryOption ?? this.selectedDeliveryOption,
       status: status ?? this.status,
       subtotal: subtotal ?? this.subtotal,
       deliveryFee: deliveryFee ?? this.deliveryFee,
       total: total ?? this.total,
+      cartItems: cartItems ?? this.cartItems,
     );
   }
 }
