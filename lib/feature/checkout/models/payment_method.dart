@@ -1,7 +1,16 @@
-
 abstract class PaymentMethod {
   String get name;
   String get icon;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentMethod &&
+          runtimeType == other.runtimeType &&
+          name == other.name;
+
+  @override
+  int get hashCode => name.hashCode;
 }
 
 class VisaPayment extends PaymentMethod {
