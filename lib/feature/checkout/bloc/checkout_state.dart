@@ -8,22 +8,34 @@ class CheckoutState {
   final PaymentMethod? selectedPaymentMethod;
   final DeliveryOption? selectedDeliveryOption;
   final CheckoutStatus status;
+  final double subtotal;
+  final double deliveryFee;
+  final double total;
 
   CheckoutState({
     this.selectedPaymentMethod,
     this.selectedDeliveryOption,
     this.status = CheckoutStatus.initial,
+    required this.subtotal,
+    this.deliveryFee = 0.0,
+    required this.total,
   });
 
   CheckoutState copyWith({
     PaymentMethod? selectedPaymentMethod,
     DeliveryOption? selectedDeliveryOption,
     CheckoutStatus? status,
+    double? subtotal,
+    double? deliveryFee,
+    double? total,
   }) {
     return CheckoutState(
       selectedPaymentMethod: selectedPaymentMethod ?? this.selectedPaymentMethod,
       selectedDeliveryOption: selectedDeliveryOption ?? this.selectedDeliveryOption,
       status: status ?? this.status,
+      subtotal: subtotal ?? this.subtotal,
+      deliveryFee: deliveryFee ?? this.deliveryFee,
+      total: total ?? this.total,
     );
   }
 }
