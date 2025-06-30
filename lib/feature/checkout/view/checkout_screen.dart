@@ -20,7 +20,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckoutBloc(),
+      create: (context) => CheckoutBloc(subtotal),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Checkout'),
@@ -45,8 +45,7 @@ class CheckoutScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            const double deliveryFee = 10.0;
-            final total = subtotal + deliveryFee;
+            
 
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -63,9 +62,9 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   OrderSummary(
-                    subtotal: subtotal,
-                    deliveryFee: deliveryFee,
-                    total: total,
+                    subtotal: state.subtotal,
+                    deliveryFee: state.deliveryFee,
+                    total: state.total,
                   ),
                   const Spacer(),
                   SizedBox(
@@ -74,9 +73,12 @@ class CheckoutScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(16),
                       ),
-                      onPressed: () {
-                        context.read<CheckoutBloc>().add(SubmitOrder());
-                      },
+                      onPressed: state.selectedDeliveryOption != null &&
+                              state.selectedPaymentMethod != null
+                          ? () {
+                              context.read<CheckoutBloc>().add(SubmitOrder());
+                            }
+                          : null,
                       child: const Text('Submit Order'),
                     ),
                   )
