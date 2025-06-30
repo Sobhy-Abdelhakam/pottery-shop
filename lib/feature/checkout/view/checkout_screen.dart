@@ -20,7 +20,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckoutBloc(subtotal),
+      create: (context) => CheckoutBloc(subtotal, cartItems),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Checkout'),
@@ -44,8 +44,6 @@ class CheckoutScreen extends StatelessWidget {
             if (state.status == CheckoutStatus.loading) {
               return const Center(child: CircularProgressIndicator());
             }
-
-            
 
             return Padding(
               padding: const EdgeInsets.all(16.0),
