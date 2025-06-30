@@ -26,10 +26,17 @@ class CartTotal extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                   ),
                   onPressed: () {
-                    // Checkout logic
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const CheckoutScreen())
-                    ); // Navigate with order information (items/ totle price)
+                    final cartState = context.read<CartBloc>().state;
+                    if (cartState is CartLoaded) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutScreen(
+                            cartItems: cartState.items,
+                            subtotal: cartState.totalPrice,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   child: const Text('Checkout'),
                 ),
