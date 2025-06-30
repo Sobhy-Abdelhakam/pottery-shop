@@ -5,6 +5,7 @@ import 'package:pottery/feature/checkout/bloc/checkout_bloc.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_event.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_state.dart';
 import 'package:pottery/feature/checkout/models/payment_method.dart';
+import 'package:pottery/feature/checkout/view/order_confirmation_screen.dart';
 import 'package:pottery/feature/checkout/widgets/delivery_option_selector.dart';
 import 'package:pottery/feature/checkout/widgets/payment_method_selector.dart';
 import 'package:pottery/feature/checkout/widgets/order_summary.dart';
@@ -23,8 +24,10 @@ class CheckoutScreen extends StatelessWidget {
         body: BlocConsumer<CheckoutBloc, CheckoutState>(
           listener: (context, state) {
             if (state.status == CheckoutStatus.success) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('checkout success')),
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const OrderConfirmationScreen(),
+                ),
               );
             } else if (state.status == CheckoutStatus.error) {
               ScaffoldMessenger.of(context).showSnackBar(
