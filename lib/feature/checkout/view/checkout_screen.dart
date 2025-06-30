@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_bloc.dart';
@@ -31,7 +30,8 @@ class CheckoutScreen extends StatelessWidget {
               );
             } else if (state.status == CheckoutStatus.error) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('An error occurred. Please try again.')),
+                const SnackBar(
+                    content: Text('An error occurred. Please try again.')),
               );
             }
           },
@@ -60,11 +60,17 @@ class CheckoutScreen extends StatelessWidget {
                     total: 110.0, // Replace with actual data
                   ),
                   const Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<CheckoutBloc>().add(SubmitOrder());
-                    },
-                    child: const Text('Submit Order'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(16),
+                      ),
+                      onPressed: () {
+                        context.read<CheckoutBloc>().add(SubmitOrder());
+                      },
+                      child: const Text('Submit Order'),
+                    ),
                   )
                 ],
               ),
