@@ -14,10 +14,16 @@ class PaymentMethodSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Payment Method', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text('Payment Method', style: Theme.of(context).textTheme.titleLarge),
         ...paymentMethods.map((method) {
           return RadioListTile<PaymentMethod>(
-            title: Text(method.name),
+            title: Row(
+              children: [
+                Image.asset(method.icon, width: 30, height: 30),
+                const SizedBox(width: 10),
+                Text(method.name, style: Theme.of(context).textTheme.bodyLarge),
+              ],
+            ),
             value: method,
             groupValue: context.watch<CheckoutBloc>().state.selectedPaymentMethod,
             onChanged: (value) {

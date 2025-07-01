@@ -13,9 +13,9 @@ class DeliveryOptionSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Delivery Option', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text('Delivery Option', style: Theme.of(context).textTheme.titleLarge),
         RadioListTile<DeliveryOption>(
-          title: const Text('Home Delivery'),
+          title: Text('Home Delivery', style: Theme.of(context).textTheme.bodyLarge),
           value: DeliveryOption.homeDelivery,
           groupValue: context.watch<CheckoutBloc>().state.selectedDeliveryOption,
           onChanged: (value) {
@@ -23,7 +23,7 @@ class DeliveryOptionSelector extends StatelessWidget {
           },
         ),
         RadioListTile<DeliveryOption>(
-          title: const Text('In-Store Pickup'),
+          title: Text('In-Store Pickup', style: Theme.of(context).textTheme.bodyLarge),
           value: DeliveryOption.inStorePickup,
           groupValue: context.watch<CheckoutBloc>().state.selectedDeliveryOption,
           onChanged: (value) {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class OrderSummary extends StatelessWidget {
@@ -18,19 +17,23 @@ class OrderSummary extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Order Summary', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text('Order Summary', style: Theme.of(context).textTheme.titleLarge),
         ListTile(
-          title: const Text('Subtotal'),
-          trailing: Text('\$$subtotal'),
+          title: Text('Subtotal', style: Theme.of(context).textTheme.bodyLarge),
+          trailing:
+              Text('\$$subtotal', style: Theme.of(context).textTheme.bodyLarge),
         ),
         ListTile(
-          title: const Text('Delivery Fee'),
-          trailing: Text('\$$deliveryFee'),
+          title: Text('Delivery Fee',
+              style: Theme.of(context).textTheme.bodyLarge),
+          trailing: Text('\$$deliveryFee',
+              style: Theme.of(context).textTheme.bodyLarge),
         ),
         const Divider(),
         ListTile(
-          title: const Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-          trailing: Text('\$$total', style: const TextStyle(fontWeight: FontWeight.bold)),
+          title: Text('Total', style: Theme.of(context).textTheme.titleLarge),
+          trailing:
+              Text('\$$total', style: Theme.of(context).textTheme.titleLarge),
         ),
       ],
     );
