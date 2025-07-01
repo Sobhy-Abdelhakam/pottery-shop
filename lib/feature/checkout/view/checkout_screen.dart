@@ -9,6 +9,8 @@ import 'package:pottery/feature/checkout/view/order_confirmation_screen.dart';
 import 'package:pottery/feature/checkout/widgets/delivery_option_selector.dart';
 import 'package:pottery/feature/checkout/widgets/payment_method_selector.dart';
 import 'package:pottery/feature/checkout/widgets/order_summary.dart';
+import 'package:pottery/feature/checkout/widgets/visa_input_form.dart';
+import 'package:pottery/feature/checkout/widgets/vodafone_cash_input_form.dart';
 
 class CheckoutScreen extends StatelessWidget {
   final List<CartItem> cartItems;
@@ -45,7 +47,7 @@ class CheckoutScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            return Padding(
+            return SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
@@ -59,18 +61,19 @@ class CheckoutScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
+                  if (state.selectedPaymentMethod is VisaPayment)
+                    const VisaInputForm()
+                  else if (state.selectedPaymentMethod is VodafoneCashPayment)
+                    const VodafoneCashInputForm(),
+                  const SizedBox(height: 20),
                   OrderSummary(
                     subtotal: state.subtotal,
                     deliveryFee: state.deliveryFee,
                     total: state.total,
                   ),
-                  const Spacer(),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(16),
-                      ),
                       onPressed: state.selectedDeliveryOption != null &&
                               state.selectedPaymentMethod != null
                           ? () {
