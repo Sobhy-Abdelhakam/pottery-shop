@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/feature/checkout/bloc/checkout_bloc.dart';
@@ -25,12 +24,13 @@ class PaymentMethodSelector extends StatelessWidget {
               ],
             ),
             value: method,
-            groupValue: context.watch<CheckoutBloc>().state.selectedPaymentMethod,
+            groupValue:
+                context.watch<CheckoutBloc>().state.selectedPaymentMethod,
             onChanged: (value) {
               context.read<CheckoutBloc>().add(SelectPaymentMethod(value!));
             },
           );
-        }).toList(),
+        }),
       ],
     );
   }

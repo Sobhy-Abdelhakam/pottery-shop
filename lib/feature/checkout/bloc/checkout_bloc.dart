@@ -52,7 +52,6 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         // In a real application, you would send this 'order' object to a backend service.
         // For now, we'll just simulate a delay.
         await Future.delayed(const Duration(seconds: 2));
-        print('Order created: ${order.total}'); // For demonstration
         emit(state.copyWith(status: CheckoutStatus.success));
       } catch (e) {
         emit(state.copyWith(status: CheckoutStatus.error));

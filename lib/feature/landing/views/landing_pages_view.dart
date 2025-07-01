@@ -106,9 +106,7 @@ class _LandingPagesViewState extends State<LandingPagesView> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
-            color: currentPage == index
-                ? AppColor.primaryColor
-                : Colors.grey.withOpacity(0.4),
+            color: currentPage == index ? AppColor.primaryColor : Colors.grey,
           ),
         );
       }),

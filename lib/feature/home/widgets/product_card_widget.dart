@@ -46,24 +46,18 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: widget.isGridView
-          ? GridProductCardWidget(
-              product: widget.product,
-              quantity: _quantity,
-              onIncrement: _incrementQuantity,
-              onDecrement: _decrementQuantity,
-            )
-          : ListProductCardWidget(
-              product: widget.product,
-              quantity: _quantity,
-              onIncrement: _incrementQuantity,
-              onDecrement: _decrementQuantity,
-            ),
-    );
+    return widget.isGridView
+        ? GridProductCardWidget(
+            product: widget.product,
+            quantity: _quantity,
+            onIncrement: _incrementQuantity,
+            onDecrement: _decrementQuantity,
+          )
+        : ListProductCardWidget(
+            product: widget.product,
+            quantity: _quantity,
+            onIncrement: _incrementQuantity,
+            onDecrement: _decrementQuantity,
+          );
   }
 }

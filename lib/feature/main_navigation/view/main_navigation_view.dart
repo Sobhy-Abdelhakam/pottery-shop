@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
+import 'package:pottery/congifures/app_color.dart';
 import 'package:pottery/feature/cart/view/cart_screen.dart';
 import 'package:pottery/feature/home/view/home_view.dart';
 
@@ -48,8 +49,8 @@ class _MainNavigationViewState extends State<MainNavigationView> {
             _selectedIndex = index;
           });
         },
-        backgroundColor: Colors.blue,
-        indicatorColor: Colors.blue.withOpacity(0.2),
+        backgroundColor: AppColor.primaryColor,
+        indicatorColor:  AppColor.primaryColor,
         animationDuration: const Duration(milliseconds: 300),
         animationCurve: Curves.ease,
       ),

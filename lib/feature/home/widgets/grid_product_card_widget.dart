@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/congifures/app_color.dart';
+import 'package:pottery/feature/home/bloc/home_cubit.dart';
+import 'package:pottery/feature/home/bloc/home_state.dart';
 import 'package:pottery/feature/home/models/product_model.dart';
 
 class GridProductCardWidget extends StatelessWidget {
@@ -18,84 +21,66 @@ class GridProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Stack(
+      alignment: Alignment.topRight,
       children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+        Column(
+          children: [
+            Image.asset(
+              product.imageUrl,
+              height: MediaQuery.of(context).size.height * 0.12,
+              fit: BoxFit.fill,
             ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-              ),
-              child: Image.asset(
-                product.imageUrl,
-                fit: BoxFit.contain,
-                width: double.infinity,
-              ),
+            Text(
+              product.productName,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            const Spacer(),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               Text(
-                product.productName,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                product.price.toString() + r"$",
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.primaryColor),
               ),
-            ],
-          ),
-        ),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "${product.price} \$",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.deepOrange, // Distinct color for price
-                        fontWeight: FontWeight.bold,
-                      ),
+              Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: const Color.fromARGB(85, 255, 165, 81),
                 ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.add,
+                    size: 20,
                     color: AppColor.primaryColor,
                   ),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.add,
-                      size: 20,
-                      color: Colors.white,
-                    ),
-                    onPressed: onIncrement,
-                    visualDensity: VisualDensity.compact, // Reduce button size
-                  ),
+                  onPressed: onIncrement,
+                  visualDensity: VisualDensity.compact, // Reduce button size
                 ),
-              ],
-            )),
+              ),
+            ]),
+          ],
+        ),
+        BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return IconButton(
+                onPressed: () {
+                  bool isfav = !state.isFav;
+                 context.read<HomeCubit>().toggleFav(isfav);
+                },
+                icon: Icon(
+                  size: 30,
+                  state.isFav ? Icons.favorite : Icons.favorite_outline_sharp,
+                  color: AppColor.primaryColor,
+                ));
+          },
+        ),
       ],
     );
   }

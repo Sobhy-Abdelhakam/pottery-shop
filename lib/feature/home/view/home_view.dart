@@ -1,9 +1,10 @@
-import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/feature/home/bloc/home_cubit.dart';
 import 'package:pottery/feature/home/bloc/home_state.dart';
+import 'package:pottery/feature/home/widgets/carousel_slider.dart';
 import 'package:pottery/feature/home/widgets/product_card_widget.dart';
+import 'package:pottery/feature/home/widgets/product_view_selection.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,71 +20,15 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      CarouselSlider(
-                        options: CarouselOptions(height: 300.0),
-                        items: [
-                          'assets/home/1.jpg',
-                          'assets/home/2.jpg',
-                          'assets/home/3.jpg',
-                          'assets/home/4.jpg',
-                          'assets/home/5.jpg',
-                        ].map((i) {
-                          return Builder(
-                            builder: (BuildContext context) {
-                              return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                                child: Image.asset(i, fit: BoxFit.cover),
-                              );
-                            },
-                          );
-                        }).toList(),
-                      ),
-                      const SizedBox(height: 10),
-                      BlocBuilder<HomeCubit, HomeState>(
-                        builder: (context, state) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "120 product",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                              const Spacer(),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.grid_on,
-                                  color: state.isGridView ? Colors.blue : Colors.grey,
-                                ),
-                                onPressed: () {
-                                  context.read<HomeCubit>().toggleView(true);
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.list,
-                                  color:
-                                      !state.isGridView ? Colors.blue : Colors.grey,
-                                ),
-                                onPressed: () {
-                                  context.read<HomeCubit>().toggleView(false);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 10),
+                      CustumCarouselSlider(),
+                      SizedBox(height: 10),
+                      ProductViewSelection(),
+                      SizedBox(height: 10),
                     ],
                   ),
                 ),

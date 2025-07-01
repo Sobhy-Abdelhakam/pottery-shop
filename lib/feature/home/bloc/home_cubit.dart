@@ -7,30 +7,18 @@ class HomeCubit extends Cubit<HomeState> {
       : super(const HomeState(
           products: [
             Product(
-              productName: 'pottery one',
-              price: 999.99,
-              imageUrl: 'assets/home/products/p1.jpeg',
+              productName: 'Pretty Vase',
+              price: 20.5,
+              imageUrl: 'assets/home/products/vase1.png',
               id: 1,
             ),
-            Product(
-                productName: 'pottery one',
-                price: 699.99,
-                imageUrl: 'assets/home/products/p1.jpeg',
-                id: 1),
-            Product(
-                productName: 'pottery one',
-                price: 149.99,
-                imageUrl: 'assets/home/products/p1.jpeg',
-                id: 1),
-            Product(
-                productName: 'pottery one',
-                price: 79.99,
-                imageUrl: 'assets/home/products/p1.jpeg',
-                id: 1),
           ],
         ));
-
   void toggleView(bool isGridView) {
     emit(state.copyWith(isGridView: isGridView));
+  }
+
+  void toggleFav(bool isFav) {
+    emit(state.copyWith( isFav: isFav));
   }
 }
