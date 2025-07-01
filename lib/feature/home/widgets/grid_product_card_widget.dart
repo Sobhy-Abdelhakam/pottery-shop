@@ -71,7 +71,7 @@ class GridProductCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  product.price,
+                  "${product.price} \$",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Colors.deepOrange, // Distinct color for price
                         fontWeight: FontWeight.bold,

@@ -24,7 +24,7 @@ class CartItemWidget extends StatelessWidget {
               builder: (context) => const ConfirmDeleteItem());
         },
         onDismissed: (direction) {
-          context.read<CartBloc>().add(RemoveFromCart(item.productId));
+          context.read<CartBloc>().add(RemoveFromCart(item.productId.toString()));
         },
         background: Container(
           padding: const EdgeInsets.only(right: 20),
@@ -82,7 +82,7 @@ class CartItemWidget extends StatelessWidget {
                       onPressed: () {
                         context.read<CartBloc>().add(
                               UpdateCartItemQuantity(
-                                item.productId,
+                                item.productId.toString(),
                                 item.quantity + 1,
                               ),
                             );
@@ -99,7 +99,7 @@ class CartItemWidget extends StatelessWidget {
                       if (newQuantity != null) {
                         context.read<CartBloc>().add(
                               UpdateCartItemQuantity(
-                                item.productId,
+                                item.productId.toString(),
                                 newQuantity,
                               ),
                             );
@@ -134,7 +134,7 @@ class CartItemWidget extends StatelessWidget {
                           ? () {
                               context.read<CartBloc>().add(
                                     UpdateCartItemQuantity(
-                                        item.productId, item.quantity - 1),
+                                        item.productId.toString(), item.quantity - 1),
                                   );
                             }
                           : null,

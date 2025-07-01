@@ -46,7 +46,7 @@ class ListProductCardWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  product.price,
+                  "${product.price} \$",
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Colors.deepOrange,
                         fontWeight: FontWeight.bold,

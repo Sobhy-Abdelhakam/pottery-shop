@@ -37,11 +37,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final current = state is CartLoaded
         ? (state as CartLoaded).items
         : (state as CartItemRemoved).items;
-      final updated = List<CartItem>.from(current);
-      final item = updated.firstWhere((e) => e.productId == event.productId);
-      updated.remove(item);
-      // updated.removeWhere((e) => e.productId == event.productId);
-      emit(CartItemRemoved(updated, item));
+    final updated = List<CartItem>.from(current);
+    final item = updated.firstWhere((e) => e.productId == event.productId);
+    updated.remove(item);
+    // updated.removeWhere((e) => e.productId == event.productId);
+    emit(CartItemRemoved(updated, item));
   }
 
   void _onUndo(UndoRemoveFromCart event, Emitter<CartState> emit) {
@@ -83,20 +83,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     try {
       // Simulate a network request
       await Future.delayed(const Duration(seconds: 1));
-      final List<CartItem> fetchedItems = [
-        const CartItem(
-            productId: '1',
-            productName: 'Ancient Vase',
-            price: 120.00,
-            imageUrl: 'assets/home/products/p1.jpeg',
-            quantity: 1),
-        const CartItem(
-            productId: '2',
-            productName: 'Terracotta Pot',
-            price: 45.50,
-            imageUrl: 'assets/home/products/p1.jpeg',
-            quantity: 2),
-      ];
+      final List<CartItem> fetchedItems = [];
       emit(CartLoaded(fetchedItems));
     } catch (e) {
       emit(const CartError('Failed to fetch cart.'));

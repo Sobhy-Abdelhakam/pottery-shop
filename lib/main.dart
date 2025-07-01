@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/congifures/light_theme.dart';
 import 'package:pottery/congifures/dark_theme.dart';
+import 'package:pottery/feature/cart/bloc/cart_bloc.dart';
 import 'package:pottery/feature/landing/views/landing_pages_view.dart';
 import 'package:pottery/feature/landing/bloc/landing_cubit.dart';
 
 void main() {
   runApp(
-    BlocProvider<LandingCubit>(
-      create: (context) => LandingCubit(),
-      child: const MyApp(),
-    ),
+    MultiBlocProvider(providers: [
+      BlocProvider(create: (context) => LandingCubit()),
+      BlocProvider(create: (context) => CartBloc()),
+    ], child: const MyApp()),
   );
 }
 

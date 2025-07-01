@@ -8,24 +8,25 @@ class HomeCubit extends Cubit<HomeState> {
           products: [
             Product(
               productName: 'pottery one',
-              price: '\$999.99',
+              price: 999.99,
               imageUrl: 'assets/home/products/p1.jpeg',
+              id: 1,
             ),
             Product(
-              productName: 'pottery one',
-              price: '\$699.99',
-              imageUrl: 'assets/home/products/p1.jpeg',
-            ),
+                productName: 'pottery one',
+                price: 699.99,
+                imageUrl: 'assets/home/products/p1.jpeg',
+                id: 1),
             Product(
-              productName: 'pottery one',
-              price: '\$149.99',
-              imageUrl: 'assets/home/products/p1.jpeg',
-            ),
+                productName: 'pottery one',
+                price: 149.99,
+                imageUrl: 'assets/home/products/p1.jpeg',
+                id: 1),
             Product(
-              productName: 'pottery one',
-              price: '\$79.99',
-              imageUrl: 'assets/home/products/p1.jpeg',
-            ),
+                productName: 'pottery one',
+                price: 79.99,
+                imageUrl: 'assets/home/products/p1.jpeg',
+                id: 1),
           ],
         ));
 

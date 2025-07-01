@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pottery/feature/cart/bloc/cart_bloc.dart';
+import 'package:pottery/feature/cart/bloc/events/cart_event.dart';
+import 'package:pottery/feature/cart/models/cart_model.dart';
 import 'package:pottery/feature/home/models/product_model.dart';
 import 'package:pottery/feature/home/widgets/grid_product_card_widget.dart';
 import 'package:pottery/feature/home/widgets/list_product_card_widget.dart';
@@ -21,6 +25,12 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
   int _quantity = 0;
 
   void _incrementQuantity() {
+    BlocProvider.of<CartBloc>(context).add(AddToCart(CartItem(
+      productId: widget.product.id,
+      productName: widget.product.productName,
+      price: widget.product.price,
+      imageUrl: widget.product.imageUrl,
+    )));
     setState(() {
       _quantity++;
     });

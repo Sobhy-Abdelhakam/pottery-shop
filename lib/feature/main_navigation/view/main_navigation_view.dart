@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
+import 'package:pottery/feature/cart/view/cart_screen.dart';
 import 'package:pottery/feature/home/view/home_view.dart';
 
 class MainNavigationView extends StatefulWidget {
@@ -14,8 +15,8 @@ class _MainNavigationViewState extends State<MainNavigationView> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(child: Text("Search Page")), // Placeholder
     const Center(child: Text("Favorites Page")), // Placeholder
+    const CartScreen(), // Placeholder
     const Center(child: Text("Profile Page")), // Placeholder
   ];
 
