@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pottery/feature/cart/bloc/cart_bloc.dart';
 import 'package:pottery/feature/cart/bloc/states/cart_state.dart';
+import 'package:pottery/feature/checkout/view/checkout_screen.dart';
 
 class CartTotal extends StatelessWidget {
   const CartTotal({super.key});
@@ -25,7 +26,17 @@ class CartTotal extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                   ),
                   onPressed: () {
-                    // Checkout logic
+                    final cartState = context.read<CartBloc>().state;
+                    if (cartState is CartLoaded) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutScreen(
+                            cartItems: cartState.items,
+                            subtotal: cartState.totalPrice,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   child: const Text('Checkout'),
                 ),
