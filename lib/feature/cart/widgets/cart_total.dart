@@ -21,10 +21,7 @@ class CartTotal extends StatelessWidget {
                   'Total: \$${state.totalPrice.toStringAsFixed(2)}',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(12),
-                  ),
+                FilledButton(
                   onPressed: () {
                     final cartState = context.read<CartBloc>().state;
                     if (cartState is CartLoaded) {

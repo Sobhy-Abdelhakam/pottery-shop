@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pottery/congifures/app_color.dart';
 
 // Light Theme
-final lightTheme = ThemeData.light().copyWith(
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-      .copyWith(secondary: Colors.deepPurpleAccent),
-  scaffoldBackgroundColor: Colors.white,
+final lightTheme = ThemeData(
+  brightness: Brightness.light,
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: createMaterialColor(AppColor.primaryColor),
+  ),
   appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.white,
-    foregroundColor: Colors.black, // Text & icons
-    elevation: 0,
     titleTextStyle: TextStyle(
       color: Colors.black,
       fontSize: 20,
@@ -16,20 +16,24 @@ final lightTheme = ThemeData.light().copyWith(
     ),
   ),
   textTheme: _lightTextTheme,
+  filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.all(16),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  )),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.blue,
-      foregroundColor: Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.all(16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: Colors.blue,
-      side: const BorderSide(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      side: const BorderSide(color: AppColor.primaryColor),
+      padding: const EdgeInsets.all(16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
     ),
@@ -45,7 +49,7 @@ final lightTheme = ThemeData.light().copyWith(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: Colors.blue),
+      borderSide: const BorderSide(color: AppColor.primaryColor),
     ),
     labelStyle: const TextStyle(color: Colors.grey),
   ),
@@ -69,3 +73,23 @@ const _lightTextTheme = TextTheme(
   bodyMedium: TextStyle(fontSize: 14.0, color: Colors.black54),
   bodySmall: TextStyle(fontSize: 12.0, color: Colors.black38),
 );
+
+MaterialColor createMaterialColor(Color color) {
+  List strengths = <double>[.05];
+  final swatch = <int, Color>{};
+  final r = color.red, g = color.green, b = color.blue;
+
+  for (int i = 1; i < 10; i++) {
+    strengths.add(0.1 * i);
+  }
+  for (var strength in strengths) {
+    final ds = 0.5 - strength;
+    swatch[(strength * 1000).round()] = Color.fromRGBO(
+      r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+      g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+      b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+      1,
+    );
+  }
+  return MaterialColor(color.toARGB32(), swatch);
+}

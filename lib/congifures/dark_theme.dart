@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:pottery/congifures/app_color.dart';
+import 'package:pottery/congifures/light_theme.dart';
 
 // Dark Theme
-final darkTheme = ThemeData.dark().copyWith(
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-      .copyWith(secondary: Colors.deepPurpleAccent),
-  scaffoldBackgroundColor: const Color(0xFF121212),
-  cardColor: const Color(0xFF1F1F1F),
+final darkTheme = ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: createMaterialColor(AppColor.primaryColor),
+    brightness: Brightness.dark,
+  ),
+  textTheme: _darkTextTheme,
   appBarTheme: const AppBarTheme(
-    backgroundColor: Color(0xFF121212),
-    foregroundColor: Colors.white,
-    elevation: 0,
     titleTextStyle: TextStyle(
       color: Colors.white,
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
   ),
-  textTheme: _darkTextTheme,
+  filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+    // foregroundColor: Colors.white,
+    padding: const EdgeInsets.all(16),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  )),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.blueAccent,
-      foregroundColor: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -28,8 +34,7 @@ final darkTheme = ThemeData.dark().copyWith(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
-      foregroundColor: Colors.blueAccent,
-      side: const BorderSide(color: Colors.blueAccent),
+      side: const BorderSide(color: AppColor.primaryColor),
       padding: const EdgeInsets.symmetric(vertical: 16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -46,7 +51,7 @@ final darkTheme = ThemeData.dark().copyWith(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: Colors.blueAccent),
+      borderSide: const BorderSide(color: AppColor.primaryColor),
     ),
     labelStyle: const TextStyle(color: Colors.grey),
   ),

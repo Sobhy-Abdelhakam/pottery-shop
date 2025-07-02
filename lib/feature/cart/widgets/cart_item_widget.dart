@@ -24,9 +24,7 @@ class CartItemWidget extends StatelessWidget {
               builder: (context) => const ConfirmDeleteItem());
         },
         onDismissed: (direction) {
-          context
-              .read<CartBloc>()
-              .add(RemoveFromCart(item.productId));
+          context.read<CartBloc>().add(RemoveFromCart(item.productId));
         },
         background: Container(
           padding: const EdgeInsets.only(right: 20),
@@ -126,9 +124,11 @@ class CartItemWidget extends StatelessWidget {
                     width: 35,
                     padding: EdgeInsets.zero,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                        borderRadius: BorderRadius.circular(8),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .error
+                            .withValues(alpha: item.quantity > 1 ? 0.7 : 0.3)),
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       icon: const Icon(Icons.remove),
@@ -136,8 +136,7 @@ class CartItemWidget extends StatelessWidget {
                           ? () {
                               context.read<CartBloc>().add(
                                     UpdateCartItemQuantity(
-                                        item.productId,
-                                        item.quantity - 1),
+                                        item.productId, item.quantity - 1),
                                   );
                             }
                           : null,
