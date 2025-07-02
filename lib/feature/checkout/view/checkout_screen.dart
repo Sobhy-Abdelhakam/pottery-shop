@@ -73,7 +73,7 @@ class CheckoutScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    child: FilledButton(
                       onPressed: state.selectedDeliveryOption != null &&
                               state.selectedPaymentMethod != null
                           ? () {

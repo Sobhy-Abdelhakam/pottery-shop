@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dot_curved_bottom_nav/dot_curved_bottom_nav.dart';
-import 'package:pottery/congifures/app_color.dart';
 import 'package:pottery/feature/cart/view/cart_screen.dart';
 import 'package:pottery/feature/home/view/home_view.dart';
 
@@ -26,6 +25,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: DotCurvedBottomNav(
+        selectedIndex: _selectedIndex,
         items: const [
           Icon(
             Icons.home,
@@ -49,8 +49,8 @@ class _MainNavigationViewState extends State<MainNavigationView> {
             _selectedIndex = index;
           });
         },
-        backgroundColor: AppColor.primaryColor,
-        indicatorColor:  AppColor.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        indicatorColor: Theme.of(context).colorScheme.primary,
         animationDuration: const Duration(milliseconds: 300),
         animationCurve: Curves.ease,
       ),
