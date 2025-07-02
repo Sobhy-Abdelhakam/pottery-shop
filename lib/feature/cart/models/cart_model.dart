@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CartItem extends Equatable {
-  final int productId;
+  final String productId;
   final String productName;
   final double price;
   final int quantity;

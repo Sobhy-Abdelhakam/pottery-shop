@@ -26,7 +26,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
   void _incrementQuantity() {
     BlocProvider.of<CartBloc>(context).add(AddToCart(CartItem(
-      productId: widget.product.id,
+      productId: widget.product.id.toString(),
       productName: widget.product.productName,
       price: widget.product.price,
       imageUrl: widget.product.imageUrl,
